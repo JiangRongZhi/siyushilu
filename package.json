@@ -1,9 +1,9 @@
 {
-  "name": "aijinke",
+  "name": "silushiyu",
   "version": "1.0.0",
   "private": true,
   "description": "My stupendous Nuxt.js project",
-  "author": "boyin",
+  "author": "jiangrongzhi",
   "scripts": {
     "build": "nuxt build",
     "test": "jest",
