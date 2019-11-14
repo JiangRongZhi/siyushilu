@@ -1,0 +1,2 @@
+exports.ids=[32],exports.modules={338:function(e,t,r){"use strict";r.r(t);var n={layout:"aijinke"},l=r(3),component=Object(l.a)(n,(function(){var e=this.$createElement;return(this._self._c||e)("div",{staticClass:"personal-wrap"},[this._ssrNode("\n  personal\n")])}),[],!1,null,null,"ab6776be");t.default=component.exports}};
+//# sourceMappingURL=02b863e3b0372ec29e59.js.map
