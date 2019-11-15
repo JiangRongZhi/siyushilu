@@ -1,6 +1,6 @@
 <template>
   <div class="app-wrap">
-    <Header v-if="userInfo.userNo"></Header>
+    <!-- <Header v-if="userInfo.userNo"></Header> -->
     <Navigator></Navigator>
     <nuxt />
     <Footer></Footer>
