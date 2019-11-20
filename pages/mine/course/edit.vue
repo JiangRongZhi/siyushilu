@@ -21,7 +21,7 @@
               :show-file-list="false"
               :action="uploadUrl"
               :on-success="handleAvatarSuccess"
-              :before-upload="uploadBefore"
+              :before-upload="beforeAvatarUpload"
               :on-remove="handleRemove"
             >
               <img v-if="courseFormData.coverImage" :src="courseFormData.coverImage" class="avatar" />
@@ -236,7 +236,7 @@ export default {
     },
     mounted() {
         this.uploadUrl = http.adornUrl(
-            '/sys/fileinfo/uploadimage?token=' + this.$cookie.get('token')
+            "/sys/fileinfo/uploadimage?token=" + this.$cookie.get("token")
         )
         const query = this.$route.query
 
@@ -462,16 +462,15 @@ export default {
         },
         //图片上传
         beforeAvatarUpload(file) {
-            console.log('before updoad')
-            const isJPG = file.type === 'image/jpeg'
-            const isLt2M = file.size / 1024 / 1024 < 2
+            const isJPG = file.type === "image/jpeg" || "image/png";
+            const isLt5M = file.size / 1024 / 1024 < 5;
             if (!isJPG) {
-                this.$message.error('上传封面图片只能是 JPG 格式!')
+                this.$message.error("上传封面图片只能是 JPG或者PNG 格式!");
             }
-            if (!isLt2M) {
-                this.$message.error('上传封面图片大小不能超过 2MB!')
+            if (!isLt5M) {
+                this.$message.error("上传封面图片大小不能超过 5MB!");
             }
-            const checked = isJPG && isLt2M
+            const checked = isJPG && isLt5M;
             if (checked) {
                 this.loading = true
             }
@@ -491,31 +490,6 @@ export default {
             console.log('error')
         },
 
-        uploadBefore(file) {
-            const index = file.name.lastIndexOf('.')
-            if (index < 0) {
-                this.$message.error('只能上传 JPG/PNG和MP4 格式文件')
-                return false
-            }
-            const substr = file.name.substring(index + 1)
-            let flag = false
-            const arr = ['JPG', 'PNG', 'MP4']
-            for (const a in arr) {
-                if (arr[a].toLowerCase() === substr.toLowerCase()) {
-                    flag = true
-                    break
-                }
-            }
-            if (!flag) {
-                this.$message.error('只能上传  JPG/PNG和MP4 格式文件')
-                return false
-            }
-            const isLt10M = file.size / 1024 / 1024 < 10
-            if (!isLt10M) {
-                this.$message.error('上传文件大小不能超过 10MB!')
-            }
-            return isLt10M
-        },
         handleRemove(file, fileList) {
             // ajax
             this.$http({

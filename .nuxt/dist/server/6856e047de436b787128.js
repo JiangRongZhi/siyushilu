@@ -1,0 +1,2 @@
+exports.ids=[7],exports.modules={365:function(t,e,r){"use strict";r.r(e);var l=r(3),component=Object(l.a)({},(function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"lesson-edit-wrap"},[e("MineTop",{attrs:{active:"lesson"}})],1)}),[],!1,null,null,"244865da");e.default=component.exports}};
+//# sourceMappingURL=6856e047de436b787128.js.map

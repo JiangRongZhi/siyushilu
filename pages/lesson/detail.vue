@@ -33,7 +33,7 @@
           <div class="download-list">
             <a :href="lessonDetail.docUrl" download target="_blank">word-PPT文档</a>
             <a :href="lessonDetail.txtUrl" download target="_blank">下载纯文本</a>
-            <a :href="lessonDetail.videoUrl" download target="_blank">下载视频文件</a>
+            <a :href="lessonDetail.totalZipUrl" download target="_blank">下载视频文件</a>
           </div>
         </div>
       </div>
@@ -187,7 +187,7 @@ export default {
             this.getDetail(this.lessonId).then(res => {
                 //console.table(res)
                 this.lessonDetail = res
-                //console.log(res)
+                console.log(res)
                 this.transLangList = res.translang
                 this.transLang = this.transLangList[0].code
 
