@@ -62,6 +62,12 @@ export const actions = {
         console.log('err:', err)
       })
   },
+  updateToken(context, token) {
+    context.commit('setToken', {
+      token: token
+    })
+    context.dispatch('getUserInfo')
+  },
   // 客户端获取用户信息
   getUserInfo(context, payload) {
     //console.log('getUserInfo', payload)
@@ -80,7 +86,7 @@ export const actions = {
       url: '/sys/user/info'
     })
       .then(res => {
-        // console.log('res:', res)
+        console.log('res:', res)
         if (res && res.loginCode === 0) {
           context.commit('setUserInfo', res.user)
         } else if (res.loginCode === 401) {
@@ -206,7 +212,7 @@ export const actions = {
       captcha: formData.captcha,
       uuid: formData.uuid
     }
-    //console.log(username)
+    //console.log(data)
     return http({
       method: 'post',
       url: 'forget/email',

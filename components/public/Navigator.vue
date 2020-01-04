@@ -100,7 +100,7 @@ export default {
     },
     methods: {
         ...mapMutations('user', ['logout']),
-        ...mapActions('user', ['getUserInfo']),
+        ...mapActions('user', ['getUserInfo','updateToken']),
         //忘记密码
         // 检测登录
         checkLogin() {
@@ -124,6 +124,11 @@ export default {
             }
         },
         getUserInfoAction() {
+            const query = this.$route.query
+            //console.log(query.token)
+            if(query.token){
+                this.updateToken(query.token)
+            }
             this.getUserInfo().then(res => {
                 if (res === 'noLogin') {
                     this.checkLogin()
@@ -136,13 +141,7 @@ export default {
             })
         },
         updateMenuActive(name) {
-            // console.log(name)
-            // if (name.indexOf('-') > 0) {
-            //     name = name.substr(0, name.indexOf('-'))
-            // }
-            console.log(name)
             const query = this.$route.query
-            //console.log(query.from,name)
             if (query.from) {
                 this.menuActive = query.from
             } else {

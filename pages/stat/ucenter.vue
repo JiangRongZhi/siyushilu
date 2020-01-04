@@ -95,7 +95,7 @@
                       <el-input disabled v-model="infoForm.mphone"></el-input>
                     </el-form-item>
                     <el-form-item label="邮箱" prop="email">
-                      <el-input disabled v-model="infoForm.email"></el-input>
+                      <el-input  v-model="infoForm.email"></el-input>
                     </el-form-item>
                     <div class="form-footer">
                       <el-button type="success" @click="submitUserInfo('infoForm')">保存</el-button>

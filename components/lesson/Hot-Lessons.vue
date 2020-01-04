@@ -1,65 +1,69 @@
 <template>
-  <div class="hot-lessons-wrap">
-    <el-carousel
-      class="hot-lessons-carousel"
-      direction="vertical"
-      :autoplay="false"
-      @change="handleCarouselChange"
-      ref="carousel"
-    >
-      <el-carousel-item v-for="(item, index) in list" :key="index">
-        <el-image :src="item.coverImage" fit="cover">
-          <el-image slot="error" :src="'http://iph.href.lu/860x320?text=' + item.name" class></el-image>
-        </el-image>
-      </el-carousel-item>
-    </el-carousel>
-    <div class="hot-lessons-list">
-      <h4>热播课堂资源</h4>
-      <ul>
-        <li
-          v-for="(item, index) in list"
-          :key="index"
-          :class="activeIndex == index ? 'active-item' : ''"
-          @mouseover="setActiveItem(index)"
+    <div class="hot-lessons-wrap">
+        <el-carousel
+            class="hot-lessons-carousel"
+            direction="vertical"
+            :autoplay="false"
+            @change="handleCarouselChange"
+            ref="carousel"
         >
-          <nuxt-link
-            class="hot-lesson-link"
-            :to="{ path: '/lesson/detail', query: { id: item.id ,from:'lesson'} }"
-          >{{ item.name }}</nuxt-link>
-        </li>
-      </ul>
+            <el-carousel-item v-for="(item, index) in list" :key="index">
+                <el-image :src="item.coverImage" fit="cover">
+                    <el-image
+                        slot="error"
+                        :src="'http://iph.href.lu/860x320?text=' + item.name"
+                        class
+                    ></el-image>
+                </el-image>
+            </el-carousel-item>
+        </el-carousel>
+        <div class="hot-lessons-list">
+            <h4>热播课堂资源</h4>
+            <ul>
+                <li
+                    v-for="(item, index) in list"
+                    :key="index"
+                    :class="activeIndex == index ? 'active-item' : ''"
+                    @mouseover="setActiveItem(index)"
+                >
+                    <nuxt-link
+                        class="hot-lesson-link"
+                        :to="{ path: '/lesson/detail', query: { id: item.id ,from:'lesson'} }"
+                    >{{ item.name }}</nuxt-link>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 export default {
     data() {
         return {
             activeIndex: 0,
             list: []
-        }
+        };
     },
     mounted() {
-        this.showHotList()
+        this.showHotList();
     },
     methods: {
-        ...mapActions('lesson', ['hotList']),
+        ...mapActions("lesson", ["hotList"]),
         showHotList() {
             this.hotList().then(res => {
-                res && (this.list = res.list)
-            })
+                res && (this.list = res.list);
+            });
         },
         handleCarouselChange(e) {
-            this.activeIndex = e
+            this.activeIndex = e;
         },
         setActiveItem(index) {
-            this.$refs.carousel.setActiveItem(index)
-            this.activeIndex = index
+            this.$refs.carousel.setActiveItem(index);
+            this.activeIndex = index;
         }
     }
-}
+};
 </script>
 
 <style lang="less">
@@ -106,8 +110,9 @@ export default {
             padding-right: 5px;
             height: 42px;
             line-height: 42px;
-            font-size: 15px;
+            font-size: 14px;
             border-bottom: 1px solid @color-border-gray1;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
             overflow: hidden;
         }
         .hot-lesson-link {
