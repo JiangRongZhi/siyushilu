@@ -28,7 +28,7 @@
     "jsencrypt": "^3.0.0-rc.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
-    "nuxt": "^2.9.2",
+    "nuxt": "^3.4.3",
     "vue-cookie": "^1.1.4",
     "vue-qr-generator": "^3.0.1",
     "vue-quill-editor": "^3.0.6"
